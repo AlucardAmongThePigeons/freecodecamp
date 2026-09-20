@@ -1,0 +1,4 @@
+# Node / JS test outputs or logs
+npm-debug.log*
+yarn-error.log
+*.log
