@@ -43,10 +43,26 @@ decimal        28-29 digits
 
 #region Variables
 {
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
     char userOption = 'y';
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
     int gameScore = 67;
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
     decimal particlesPerMillion = 0.000001m;
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
     bool processedCustomer = false;
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
 
     string firstName;
     firstName = "Mauro";
@@ -62,7 +78,11 @@ decimal        28-29 digits
     /* An implicitly typed local variable is created by using the var keyword followed by a variable initialization. For example:
     C# */
 
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
     var message = "Hello world!";
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
 
     /* The var keyword tells the C# compiler that the data type is implied by the assigned value.
     After the type is implied, the variable acts the same as if the actual data type had been used to declare it.
@@ -174,13 +194,17 @@ decimal        28-29 digits
         string greeting = "Hello";
 
         {
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             string message = greeting + " " + firstName + "!";
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
         }
 
         // can be written with string interpolation as this:
 
         {
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             string message = $"{greeting} {firstName}!";
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
         }
     }
 
