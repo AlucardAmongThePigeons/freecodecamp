@@ -46,20 +46,8 @@ decimal        28-29 digits
 #pragma warning disable CS0219 // Variable is assigned but its value is never used
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
     char userOption = 'y';
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
-#pragma warning restore CS0219 // Variable is assigned but its value is never used
-#pragma warning disable CS0219 // Variable is assigned but its value is never used
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
     int gameScore = 67;
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
-#pragma warning restore CS0219 // Variable is assigned but its value is never used
-#pragma warning disable CS0219 // Variable is assigned but its value is never used
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
     decimal particlesPerMillion = 0.000001m;
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
-#pragma warning restore CS0219 // Variable is assigned but its value is never used
-#pragma warning disable CS0219 // Variable is assigned but its value is never used
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
     bool processedCustomer = false;
 #pragma warning restore IDE0059 // Unnecessary assignment of a value
 #pragma warning restore CS0219 // Variable is assigned but its value is never used
@@ -258,3 +246,220 @@ decimal        28-29 digits
 );
 }
 #endregion
+
+#region Recognize C#'s common numeric data types
+{
+    /*
+    Type Name 	C# Keyword 	Description 	                                    Example
+    Integer 	int 	    Whole numbers (positive or negative) 	            42, -7, 1000
+    Decimal 	decimal 	Precise decimal numbers, great for money 	        19.99m, 3.14m
+    Double 	    double 	    Larger decimal numbers, common for calculations 	3.14, 2.71828
+    */
+
+    {
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
+        int score = 95;
+        decimal price = 19.99m;
+        double average = 87.5;
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
+    }
+
+    {
+        int a = 7;
+        int b = 2;
+        Console.WriteLine(a / b);        // Output: 3 (integer division truncates)
+
+        decimal c = 7m;
+        decimal d = 2m;
+        Console.WriteLine(c / d);        // Output: 3.5 (keeps the decimal)
+    }
+
+
+}
+#endregion
+
+#region Perform basic math operations with numbers
+{
+    /*
+        Operator 	Action 	                Example 	Result
+        + 	        Addition 	            10 + 3 	    13
+        - 	        Subtraction 	        10 - 3 	    7
+        * 	        Multiplication 	        10 * 3 	    30
+        / 	        Division 	            10 / 3 	    3 (integer division)
+        % 	        Modulus (remainder) 	10 % 3 	    1
+    */
+
+    {
+        // The modulus operator % returns whatever is left over after division:
+        Console.WriteLine(10 % 2);   // Output: 0 (10 is even)
+        Console.WriteLine(11 % 2);   // Output: 1 (11 is odd)
+    }
+
+    {
+        // C# follows standard math order of operations (PEMDAS): Parentheses, then Multiplication/Division, then Addition/Subtraction.
+        // Use parentheses to control the order:
+
+#pragma warning disable
+        int standard = 2 + 3 * 4;      // Multiplication first: 14
+        int forced = (2 + 3) * 4;      // Parentheses first: 20
+#pragma warning restore
+    }
+
+    {
+        // A common pattern is updating a variable using its own value—like adding to a score or subtracting from a balance. C# has shorthand operators for this:
+
+        int score = 50;
+        score = score + 10;    // Standard way: score is 60
+        score += 10;           // Shorthand: score is 70
+
+        // The same shorthand works for other operations:
+        // Operator 	Meaning 	            Example         Result (starting at 10)
+        // += 	        Add and assign 	        x += 5 	        15
+        // -= 	        Subtract and assign     x -= 5 	        5
+        // *= 	        Multiply and assign     x *= 5 	        50
+        // /= 	        Divide and assign 	    x /= 5 	        2
+    }
+
+    {
+        // For adding or subtracting 1, C# has even shorter operators—++ and --:
+
+        int count = 5;
+        count++;                       // Same as count = count + 1
+        Console.WriteLine(count);      // Output: 6
+
+        count--;                       // Same as count = count - 1
+        Console.WriteLine(count);      // Output: 5
+    }
+
+    {
+        // The ++ and -- operators behave differently depending on whether they appear before or after the variable:
+
+        //  Post-increment (value++): Uses the current value first, then increments
+        //  Pre-increment (++value): Increments first, then uses the new value
+
+        int a = 5;
+        Console.WriteLine(a++);   // Output: 5 (uses old value, then increments)
+        Console.WriteLine(a);     // Output: 6 (a was incremented)
+
+        int b = 5;
+        Console.WriteLine(++b);   // Output: 6 (increments first, then uses new value)
+        Console.WriteLine(b);     // Output: 6
+
+        // The same rules apply to -- (decrement).
+    }
+
+    {
+        {
+            // When you divide two integers, C# truncates (drops) the decimal portion:
+            int result = 7 / 2;
+            Console.WriteLine(result);     // Output: 3 (not 3.5)
+        }
+
+        {
+            // To keep the decimal, at least one of the numbers must be a decimal type:
+            decimal result = 7m / 2m;
+            Console.WriteLine(result);     // Output: 3.5
+        }
+
+        // This is why choosing the right data type matters for your calculations. In the next section, you learn how to convert between types when you need to.
+    }
+}
+#endregion
+
+#region Convert values between different data types
+{
+    // C# provides Convert methods to change values between data types:
+    // Method 	            Converts to 	Example 	                Result
+    // Convert.ToInt32() 	int 	        Convert.ToInt32("42") 	    42
+    // Convert.ToDecimal() 	decimal 	    Convert.ToDecimal("19.99") 	19.99m
+    // Convert.ToDouble() 	double 	        Convert.ToDouble("3.14") 	3.14
+    // Convert.ToString() 	string 	        Convert.ToString(42) 	    "42"
+
+    {
+        Console.Write("Enter your age: ");
+        string? ageInput = Console.ReadLine();
+        int age = Convert.ToInt32(ageInput);
+        int nextYear = age + 1;
+        Console.WriteLine($"Next year you'll be {nextYear}");
+    }
+
+    {
+        // Another way to convert strings to numbers is with the Parse methods:
+        int age = int.Parse("25");
+        decimal price = decimal.Parse("19.99");
+        double average = double.Parse("87.5");
+        // Both Convert.ToInt32() and int.Parse() do similar things—use whichever style you prefer.
+    }
+
+    {
+        // To convert between numeric types (like decimal to int), use a cast by placing the target type in parentheses:
+
+        decimal price = 19.99m;
+        int wholePrice = (int)price;         // Casts to int: 19 (decimal dropped)
+        Console.WriteLine(wholePrice);       // Output: 19
+
+        // You can also cast to keep decimal precision during division:
+
+        int first = 7;
+        int second = 2;
+        decimal result = (decimal)first / (decimal)second;
+        Console.WriteLine(result);           // Output: 3.5
+
+        // What happens with invalid conversions?
+
+        // If you try to convert a value that can't be interpreted as a number, C# throws an error:
+
+        // int number = Convert.ToInt32("hello");    // ERROR: Input string was not in a correct format
+
+        // For now, just make sure the value can be converted before you try. Later, you'll learn how to handle errors gracefully.
+    }
+}
+#endregion
+
+#region Exercise: Build a tip calculator
+{
+    // Collect the bill amount and tip percentage
+    const int minTip = 10, maxTip = 100;
+    double billAmount, tipAmount, total;
+    int tipPercentage;
+    bool success;
+
+    do
+    {
+        Console.Write("Insert bill amount [must be a decimal number greater than 0]: ");
+        string? input = Console.ReadLine();
+        success = double.TryParse(input, out billAmount);
+    } while (!success || billAmount <= 0);
+
+    do
+    {
+        Console.Write($"Insert tip percentage [must be an integer between {minTip} and {maxTip}]: ");
+        string? input = Console.ReadLine();
+        success = int.TryParse(input, out tipPercentage);
+    } while (!success || tipPercentage < minTip || tipPercentage > maxTip);
+
+    // Display the entered values
+    Console.WriteLine();
+    Console.WriteLine($"Bill amount: {billAmount:C}");
+    Console.WriteLine($"Tip percentage: {tipPercentage}%");
+
+    // Calculate the tip and total
+    Console.WriteLine("Calculating tip amount and total");
+    tipAmount = billAmount * (tipPercentage / 100.0);
+    total = billAmount + tipAmount;
+
+    // Display the results
+    {
+        string billStr = billAmount.ToString("C");
+        string tipStr = tipAmount.ToString("C");
+        string totalStr = total.ToString("C");
+        Console.WriteLine();
+        Console.WriteLine($"{"Price".PadRight(15, '.')}{billStr.PadLeft(10, '.')}");
+        Console.WriteLine($"{"Tip".PadRight(15, '.')}{tipStr.PadLeft(10, '.')}");
+        Console.WriteLine();
+        Console.WriteLine($"{"Total".PadRight(15, '.')}{totalStr.PadLeft(10, '.')}");
+        Console.WriteLine();
+    }
+}
+#endregion
+
